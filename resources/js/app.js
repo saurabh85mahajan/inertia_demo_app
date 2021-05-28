@@ -2,6 +2,7 @@ require('./bootstrap');
 
 import { createApp, h } from 'vue'
 import { App, plugin } from '@inertiajs/inertia-vue3'
+import { InertiaProgress } from '@inertiajs/progress'
 
 const el = document.getElementById('app')
 
@@ -14,3 +15,5 @@ createApp({
 .mixin({methods : {route}})
 .use(plugin)
 .mount(el)
+
+InertiaProgress.init();
