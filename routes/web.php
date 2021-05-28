@@ -16,8 +16,8 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
-});
+})->name('home');
 
-Route::get('/another', function() {
+Route::get('/home2', function() {
     return Inertia::render('Another');
-});
+})->name('home2');

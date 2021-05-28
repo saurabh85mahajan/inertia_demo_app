@@ -1,6 +1,6 @@
 <template>
     <div>
-        <inertia-link href="/another">Another</inertia-link>
+        <inertia-link :href="route('home2')">Another</inertia-link>
         This is Welcome File.
     </div>
 </template>
