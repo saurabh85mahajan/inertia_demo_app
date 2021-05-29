@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
 class DepartmentController extends Controller
@@ -31,6 +32,7 @@ class DepartmentController extends Controller
     public function create()
     {
         //
+        return Inertia::render('Departments/Create');
     }
 
     /**
@@ -42,6 +44,15 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         //
+        Department::create(
+            Request::validate([
+                'name' => ['required', 'min:5', 'max:50'],
+                'email' => ['nullable', 'max:50', 'email'],
+                'phone' => ['nullable', 'max:50']
+            ])
+        );
+
+        return Redirect::route('departments.index');
     }
 
     /**
