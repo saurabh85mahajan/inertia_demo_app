@@ -5,8 +5,7 @@
         v-if="link.url === null"
         class="mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray-400"
         v-html="link.label"
-      >
-      </div>
+      ></div>
       <inertia-link
         v-else
         class="mr-1 mb-1 px-4 py-3 text-sm border rounded hover:bg-gray-300 focus:border-indigo-500 focus:text-indigo-500"
@@ -15,8 +14,8 @@
           'ml-autos': link.label === 'Next',
         }"
         :href="link.url"
-        ><span v-html="link.label"></span></inertia-link
-      >
+        ><span v-html="link.label"></span
+      ></inertia-link>
     </template>
   </div>
 </template>

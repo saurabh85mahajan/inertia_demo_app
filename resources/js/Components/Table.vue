@@ -6,7 +6,7 @@
       </tr>
     </thead>
     <tbody>
-      <slot/>
+      <slot />
     </tbody>
   </table>
 </template>
