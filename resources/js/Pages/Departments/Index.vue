@@ -18,7 +18,7 @@
                                 <breeze-tc>Phone</breeze-tc>
                                 <breeze-tc>Actions</breeze-tc>
                             </template>
-                            <tr v-for="d in departments" :key="d.id" class="hover:bg-gray-200">
+                            <tr v-for="d in departments.data" :key="d.id" class="hover:bg-gray-200">
                                 <breeze-tc>{{d.id}}</breeze-tc>
                                 <breeze-tc>{{d.name}}</breeze-tc>
                                 <breeze-tc>{{d.email}}</breeze-tc>
@@ -26,6 +26,8 @@
                                 <breeze-tc></breeze-tc>
                             </tr>
                         </breeze-table>
+
+                        <breeze-pagination :links="departments.links" />
                     </div>
                 </div>
             </div>
@@ -37,12 +39,14 @@
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
     import BreezeTc from '@/Components/TableColumn'
     import BreezeTable from '@/Components/Table'
+    import BreezePagination from '@/Components/Pagination'
 
     export default {
         components: {
             BreezeAuthenticatedLayout,
             BreezeTc,
             BreezeTable,
+            BreezePagination,
         },
 
         props: {
