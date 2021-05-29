@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request;
+//use Illuminate\Support\Facades\Request;
+use App\Http\Requests\DepartmentRequest;
 use Inertia\Inertia;
 
 class DepartmentController extends Controller
@@ -41,18 +42,12 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
         //
-        Department::create(
-            Request::validate([
-                'name' => ['required', 'min:5', 'max:50'],
-                'email' => ['nullable', 'max:50', 'email'],
-                'phone' => ['nullable', 'max:50']
-            ])
-        );
+        Department::create($request->all());
 
-        return Redirect::route('departments.index');
+        return Redirect::route('departments.index')->with('success', 'Department Created Successfully.');
     }
 
     /**
@@ -84,7 +79,7 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(DepartmentRequest $request, Department $department)
     {
         //
     }
