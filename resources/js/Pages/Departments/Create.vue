@@ -53,6 +53,9 @@
 
                 <!-- submit -->
                 <div class="flex items-center justify-end mt-4">
+                    <breeze-reset-button
+                        @click="resetForm"
+                    >Reset</breeze-reset-button>
                     <breeze-button
                         :loading="form.processing"
                     >Create</breeze-button>
@@ -72,6 +75,7 @@ import BreezeLabel from "@/Components/Label";
 import BreezeInput from "@/Components/Input";
 import BreezeInputError from "@/Components/InputError";
 import BreezeButton from "@/Components/Button";
+import BreezeResetButton from "@/Components/ResetButton";
 import { useForm } from '@inertiajs/inertia-vue3'
 
 export default {
@@ -81,6 +85,7 @@ export default {
     BreezeLabel,
     BreezeInput,
     BreezeButton,
+    BreezeResetButton,
     BreezeInputError,
   },
   setup () {
@@ -95,6 +100,10 @@ export default {
   methods : {
       submit() {
           this.form.post(route('departments.store'));
+      },
+      resetForm() {
+          this.form.clearErrors();
+          this.form.reset();
       }
   }
 };
