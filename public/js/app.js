@@ -18603,7 +18603,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     destroy: function destroy(id) {
       this.$inertia["delete"](route("departments.destroy", id), {
-        preserveScroll: true
+        preserveScroll: true,
+        preserveState: false
       });
     },
     employees: function employees(id) {
@@ -18798,7 +18799,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     destroy: function destroy(id) {
       this.$inertia["delete"](route("employees.destroy", id), {
-        preserveScroll: true
+        preserveScroll: true,
+        preserveState: false
       });
     },
     getEmployees: function getEmployees(department_id) {
