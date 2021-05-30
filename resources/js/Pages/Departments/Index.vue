@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     destroy(id) {
-      this.$inertia.delete(route("departments.destroy", id));
+      this.$inertia.delete(route("departments.destroy", id), {preserveScroll: true});
     },
     employees(id) {
       this.$inertia.visit(route('employees.index'), {

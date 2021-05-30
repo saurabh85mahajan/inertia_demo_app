@@ -18602,7 +18602,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     destroy: function destroy(id) {
-      this.$inertia["delete"](route("departments.destroy", id));
+      this.$inertia["delete"](route("departments.destroy", id), {
+        preserveScroll: true
+      });
     },
     employees: function employees(id) {
       this.$inertia.visit(route('employees.index'), {
@@ -18795,7 +18797,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     destroy: function destroy(id) {
-      this.$inertia["delete"](route("employees.destroy", id));
+      this.$inertia["delete"](route("employees.destroy", id), {
+        preserveScroll: true
+      });
     },
     getEmployees: function getEmployees(department_id) {
       this.$inertia.get(route("employees.index"), {
