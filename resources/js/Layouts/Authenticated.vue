@@ -21,6 +21,9 @@
                                 <breeze-nav-link :href="route('departments.index')" :active="route().current('departments.index')">
                                     Departments
                                 </breeze-nav-link>
+                                <breeze-nav-link :href="route('employees.index')" :active="route().current('employees.index')">
+                                    Employees
+                                </breeze-nav-link>
                             </div>
                         </div>
 
@@ -69,6 +72,9 @@
                         </breeze-responsive-nav-link>
                         <breeze-responsive-nav-link :href="route('departments.index')" :active="route().current('departments.index')">
                             Departments
+                        </breeze-responsive-nav-link>
+                        <breeze-responsive-nav-link :href="route('employees.index')" :active="route().current('employees.index')">
+                            Employees
                         </breeze-responsive-nav-link>
                     </div>
 

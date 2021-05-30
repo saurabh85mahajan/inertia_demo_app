@@ -9,4 +9,9 @@ class Department extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'email', 'phone'];
+
+    public function employees() 
+    {
+        return $this->hasMany(\App\Models\Employee::class);
+    }
 }
