@@ -15,5 +15,12 @@ class Employee extends Model
     {
         return $this->belongsTo(\App\Models\Department::class);
     }
+
+    public function scopeWhereDepartment( $query, $department_id) 
+    {
+        $query->when( !is_null($department_id), function($query) use ($department_id) {
+            $query->where('department_id', $department_id);
+        });
+    }
     
 }

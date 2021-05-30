@@ -4,7 +4,15 @@
       <breeze-heading>Employees</breeze-heading>
     </template>
 
-    <div class="flex items-center justify-end mb-6">
+    <div class="flex items-center justify-between mb-6">
+      <breeze-select
+        id="department_id"
+        class="mt-1 block w-1/3"
+        v-model="department_id"
+        :options="departments"
+        @change="getEmployees(department_id)"
+      ></breeze-select>
+
       <breeze-link :href="route('employees.create')">New Employee </breeze-link>
     </div>
     <breeze-table>
@@ -15,7 +23,7 @@
         <breeze-tc>Email</breeze-tc>
         <breeze-tc>Actions</breeze-tc>
       </template>
-      <tr v-for="e in employees.data" :key="e.id" class="hover:bg-gray-200">
+      <tr v-for="e in employees" :key="e.id" class="hover:bg-gray-200">
         <breeze-tc>{{ e.id }}</breeze-tc>
         <breeze-tc>{{ e.name }}</breeze-tc>
         <breeze-tc>{{ e.department }}</breeze-tc>
@@ -28,8 +36,6 @@
         </breeze-tc>
       </tr>
     </breeze-table>
-
-    <breeze-pagination :links="employees.links" />
   </breeze-authenticated-layout>
 </template>
 
@@ -37,26 +43,35 @@
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
 import BreezeTc from "@/Components/TableColumn";
 import BreezeTable from "@/Components/Table";
-import BreezePagination from "@/Components/Pagination";
 import BreezeLink from "@/Components/AnchorLink";
 import BreezeHeading from "@/Components/Heading";
+import BreezeSelect from "@/Components/Select";
 
 export default {
   components: {
     BreezeAuthenticatedLayout,
     BreezeTc,
     BreezeTable,
-    BreezePagination,
     BreezeLink,
     BreezeHeading,
+    BreezeSelect,
   },
 
   props: {
     employees: Object,
+    departments: Object,
+    department_id: [String, Number],
   },
   methods: {
     destroy(id) {
       this.$inertia.delete(route("employees.destroy", id));
+    },
+    getEmployees(department_id) {
+      this.$inertia.get(
+        route("employees.index"),
+        { department_id: department_id },
+        { only: ["employees", "department_id"] }
+      );
     },
   },
 };

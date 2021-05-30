@@ -22,17 +22,28 @@ class EmployeeController extends Controller
     {
         //
         return Inertia::render('Employees/Index', [
+            'department_id' => Request::get('department_id'),
             'employees' => Employee::orderBy('id', 'DESC')
                 ->with('department')
-                ->paginate(10)
-                ->through(function ($employee) {
+                ->whereDepartment(Request::get('department_id'))
+                ->get()
+                ->transform(function ($employee) {
                     return [
                         'id' => $employee->id,
                         'name' => $employee->name,
                         'email' => $employee->email,
                         'department' => $employee->department->name ?? null,
                     ];
-                })
+                }),
+            'departments' => function () {
+                return Department::orderBy('name')->get()
+                    ->transform(function ($d) {
+                        return [
+                            'id' => $d->id,
+                            'label' =>  $d->name
+                        ];
+                    });
+            }
         ]);
     }
 

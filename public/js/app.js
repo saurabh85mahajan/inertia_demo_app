@@ -18762,9 +18762,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.vue");
 /* harmony import */ var _Components_TableColumn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/TableColumn */ "./resources/js/Components/TableColumn.vue");
 /* harmony import */ var _Components_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Table */ "./resources/js/Components/Table.vue");
-/* harmony import */ var _Components_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Pagination */ "./resources/js/Components/Pagination.vue");
-/* harmony import */ var _Components_AnchorLink__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/AnchorLink */ "./resources/js/Components/AnchorLink.vue");
-/* harmony import */ var _Components_Heading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Heading */ "./resources/js/Components/Heading.vue");
+/* harmony import */ var _Components_AnchorLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/AnchorLink */ "./resources/js/Components/AnchorLink.vue");
+/* harmony import */ var _Components_Heading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Heading */ "./resources/js/Components/Heading.vue");
+/* harmony import */ var _Components_Select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Select */ "./resources/js/Components/Select.vue");
 
 
 
@@ -18776,16 +18776,25 @@ __webpack_require__.r(__webpack_exports__);
     BreezeAuthenticatedLayout: _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_0__.default,
     BreezeTc: _Components_TableColumn__WEBPACK_IMPORTED_MODULE_1__.default,
     BreezeTable: _Components_Table__WEBPACK_IMPORTED_MODULE_2__.default,
-    BreezePagination: _Components_Pagination__WEBPACK_IMPORTED_MODULE_3__.default,
-    BreezeLink: _Components_AnchorLink__WEBPACK_IMPORTED_MODULE_4__.default,
-    BreezeHeading: _Components_Heading__WEBPACK_IMPORTED_MODULE_5__.default
+    BreezeLink: _Components_AnchorLink__WEBPACK_IMPORTED_MODULE_3__.default,
+    BreezeHeading: _Components_Heading__WEBPACK_IMPORTED_MODULE_4__.default,
+    BreezeSelect: _Components_Select__WEBPACK_IMPORTED_MODULE_5__.default
   },
   props: {
-    employees: Object
+    employees: Object,
+    departments: Object,
+    department_id: [String, Number]
   },
   methods: {
     destroy: function destroy(id) {
       this.$inertia["delete"](route("employees.destroy", id));
+    },
+    getEmployees: function getEmployees(department_id) {
+      this.$inertia.get(route("employees.index"), {
+        department_id: department_id
+      }, {
+        only: ["employees", "department_id"]
+      });
     }
   }
 });
@@ -21438,7 +21447,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Employees");
 
 var _hoisted_2 = {
-  "class": "flex items-center justify-end mb-6"
+  "class": "flex items-center justify-between mb-6"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("New Employee ");
@@ -21460,13 +21469,13 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_breeze_heading = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-heading");
 
+  var _component_breeze_select = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-select");
+
   var _component_breeze_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-link");
 
   var _component_breeze_tc = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-tc");
 
   var _component_breeze_table = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-table");
-
-  var _component_breeze_pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-pagination");
 
   var _component_breeze_authenticated_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-authenticated-layout");
 
@@ -21482,7 +21491,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       })];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_select, {
+        id: "department_id",
+        "class": "mt-1 block w-1/3",
+        modelValue: $props.department_id,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $props.department_id = $event;
+        }),
+        options: $props.departments,
+        onChange: _cache[2] || (_cache[2] = function ($event) {
+          return $options.getEmployees($props.department_id);
+        })
+      }, null, 8
+      /* PROPS */
+      , ["modelValue", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
         href: _ctx.route('employees.create')
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -21533,7 +21555,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           })];
         }),
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.employees.data, function (e) {
+          return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.employees, function (e) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
               key: e.id,
               "class": "hover:bg-gray-200"
@@ -21624,11 +21646,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
         /* STABLE */
 
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_pagination, {
-        links: $props.employees.links
-      }, null, 8
-      /* PROPS */
-      , ["links"])];
+      })];
     }),
     _: 1
     /* STABLE */
