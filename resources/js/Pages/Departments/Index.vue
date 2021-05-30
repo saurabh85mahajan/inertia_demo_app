@@ -27,6 +27,7 @@
             >Edit</breeze-link
           >
           <breeze-link mode="delete" @click="destroy(d.id)">Delete</breeze-link>
+          <breeze-link mode="view" @click="employees(d.id)">View</breeze-link>
         </breeze-tc>
       </tr>
     </breeze-table>
@@ -60,6 +61,13 @@ export default {
     destroy(id) {
       this.$inertia.delete(route("departments.destroy", id));
     },
+    employees(id) {
+      this.$inertia.visit(route('employees.index'), {
+        method: "get",
+        data: {department_id: id}
+      });
+      // this.$inertia.get(route('employees.index'), {department_id: id});
+    }
   },
 };
 </script>
