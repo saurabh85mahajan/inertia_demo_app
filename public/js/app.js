@@ -17658,28 +17658,28 @@ __webpack_require__.r(__webpack_exports__);
     href: String,
     mode: {
       type: String,
-      "default": 'add'
+      "default": "add"
     }
   },
   computed: {
     classes: function classes() {
-      if (this.mode == 'add') {
-        return 'bg-blue-600 hover:bg-blue-800';
+      if (this.mode == "add") {
+        return "bg-blue-600 hover:bg-blue-800";
       }
 
-      if (this.mode == 'edit') {
-        return 'bg-purple-600 hover:bg-purple-800';
+      if (this.mode == "edit") {
+        return "bg-yellow-600 hover:bg-yellow-800";
       }
 
-      if (this.mode == 'delete') {
-        return 'bg-red-600 hover:bg-red-800';
+      if (this.mode == "delete") {
+        return "bg-red-600 hover:bg-red-800";
       }
 
-      if (this.mode == 'view') {
-        return 'bg-green-600 hover:bg-green-800';
+      if (this.mode == "view") {
+        return "bg-green-600 hover:bg-green-800";
       }
 
-      return '';
+      return "";
     }
   }
 });
@@ -18564,6 +18564,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     departments: Object
+  },
+  methods: {
+    destroy: function destroy(id) {
+      this.$inertia["delete"](route("departments.destroy", id));
+    }
   }
 });
 
@@ -18609,7 +18614,8 @@ __webpack_require__.r(__webpack_exports__);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_inertia_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("inertia-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
+  return $props.href ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_inertia_link, {
+    key: 0,
     href: $props.href,
     "class": ["px-3 py-2 mr-2 rounded text-white text-sm font-bold whitespace-no-wrap", $options.classes]
   }, {
@@ -18621,7 +18627,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href", "class"]);
+  , ["href", "class"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("button", {
+    key: 1,
+    "class": ["px-3 py-2 mr-2 rounded text-white text-sm font-bold whitespace-no-wrap", $options.classes]
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 2
+  /* CLASS */
+  ));
 }
 
 /***/ }),
@@ -20608,6 +20619,8 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Edit");
 
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Delete");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_breeze_heading = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-heading");
 
@@ -20735,6 +20748,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_tc, null, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
                 return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+                  mode: "edit",
                   href: _ctx.route('departments.edit', d.id)
                 }, {
                   "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -20745,7 +20759,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                 }, 1032
                 /* PROPS, DYNAMIC_SLOTS */
-                , ["href"])];
+                , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+                  mode: "delete",
+                  onClick: function onClick($event) {
+                    return $options.destroy(d.id);
+                  }
+                }, {
+                  "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                    return [_hoisted_10];
+                  }),
+                  _: 2
+                  /* DYNAMIC */
+
+                }, 1032
+                /* PROPS, DYNAMIC_SLOTS */
+                , ["onClick"])];
               }),
               _: 2
               /* DYNAMIC */

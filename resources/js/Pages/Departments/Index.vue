@@ -23,9 +23,10 @@
         <breeze-tc>{{ d.email }}</breeze-tc>
         <breeze-tc>{{ d.phone }}</breeze-tc>
         <breeze-tc>
-          <breeze-link :href="route('departments.edit', d.id)"
+          <breeze-link mode="edit" :href="route('departments.edit', d.id)"
             >Edit</breeze-link
           >
+          <breeze-link mode="delete" @click="destroy(d.id)">Delete</breeze-link>
         </breeze-tc>
       </tr>
     </breeze-table>
@@ -54,6 +55,11 @@ export default {
 
   props: {
     departments: Object,
+  },
+  methods: {
+    destroy(id) {
+      this.$inertia.delete(route("departments.destroy", id));
+    },
   },
 };
 </script>
