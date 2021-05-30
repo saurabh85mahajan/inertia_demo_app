@@ -70,6 +70,14 @@ class DepartmentController extends Controller
     public function edit(Department $department)
     {
         //
+        return Inertia::render('Departments/Edit', [
+            'department' => [
+                'id' => $department->id,
+                'name' => $department->name,
+                'email' => $department->email,
+                'phone' => $department->phone,
+            ]
+        ]);
     }
 
     /**
@@ -82,6 +90,9 @@ class DepartmentController extends Controller
     public function update(DepartmentRequest $request, Department $department)
     {
         //
+        $department->update($request->all());
+        return Redirect::route('departments.index')->with('success', 'Department Updated Successfully.');
+
     }
 
     /**
