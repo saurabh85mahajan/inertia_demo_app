@@ -11,7 +11,10 @@ use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
-
+    public function __construct() 
+    {
+        $this->authorizeResource(Employee::class);
+    }
 
     /**
      * Display a listing of the resource.
@@ -22,6 +25,9 @@ class EmployeeController extends Controller
     {
         //
         return Inertia::render('Employees/Index', [
+            'can' => [
+                'create' => auth()->user()->can('create', Employee::class),
+            ],
             'department_id' => Request::get('department_id'),
             'employees' => Employee::orderBy('id', 'DESC')
                 ->with('department')
@@ -33,6 +39,10 @@ class EmployeeController extends Controller
                         'name' => $employee->name,
                         'email' => $employee->email,
                         'department' => $employee->department->name ?? null,
+                        'can' => [
+                            'delete' => auth()->user()->can('delete', $employee),
+                            'edit' => auth()->user()->can('update', $employee),
+                        ],
                     ];
                 }),
             'departments' => function () {

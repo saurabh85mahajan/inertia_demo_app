@@ -18608,7 +18608,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     employees: function employees(id) {
-      this.$inertia.visit(route('employees.index'), {
+      this.$inertia.visit(route("employees.index"), {
         method: "get",
         data: {
           department_id: id
@@ -20968,7 +20968,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       })];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [_ctx.$page.props.can.create ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_link, {
+        key: 0,
         href: _ctx.route('departments.create')
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -20979,7 +20980,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_table, null, {
+      , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_table, null, {
         header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_tc, null, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -21069,7 +21070,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             /* DYNAMIC_SLOTS */
             ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_tc, null, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+                return [d.can.edit ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_link, {
+                  key: 0,
                   mode: "edit",
                   href: _ctx.route('departments.edit', d.id)
                 }, {
@@ -21081,7 +21083,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                 }, 1032
                 /* PROPS, DYNAMIC_SLOTS */
-                , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+                , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), d.can["delete"] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_link, {
+                  key: 1,
                   mode: "delete",
                   onClick: function onClick($event) {
                     return $options.destroy(d.id);
@@ -21095,7 +21098,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                 }, 1032
                 /* PROPS, DYNAMIC_SLOTS */
-                , ["onClick"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+                , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
                   mode: "view",
                   onClick: function onClick($event) {
                     return $options.employees(d.id);
@@ -21534,7 +21537,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 8
       /* PROPS */
-      , ["modelValue", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+      , ["modelValue", "options"]), _ctx.$page.props.can.create ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_link, {
+        key: 0,
         href: _ctx.route('employees.create')
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -21545,7 +21549,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_table, null, {
+      , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_table, null, {
         header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_tc, null, {
             "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -21635,7 +21639,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             /* DYNAMIC_SLOTS */
             ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_tc, null, {
               "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+                return [e.can.edit ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_link, {
+                  key: 0,
                   mode: "edit",
                   href: _ctx.route('employees.edit', e.id)
                 }, {
@@ -21647,7 +21652,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                 }, 1032
                 /* PROPS, DYNAMIC_SLOTS */
-                , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_link, {
+                , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), e.can["delete"] ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_link, {
+                  key: 1,
                   mode: "delete",
                   onClick: function onClick($event) {
                     return $options.destroy(e.id);
@@ -21661,7 +21667,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
                 }, 1032
                 /* PROPS, DYNAMIC_SLOTS */
-                , ["onClick"])];
+                , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
               }),
               _: 2
               /* DYNAMIC */

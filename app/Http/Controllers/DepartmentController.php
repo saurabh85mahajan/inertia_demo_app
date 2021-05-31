@@ -10,6 +10,11 @@ use Inertia\Inertia;
 
 class DepartmentController extends Controller
 {
+
+    public function __construct() 
+    {
+        $this->authorizeResource(Department::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +23,23 @@ class DepartmentController extends Controller
     public function index()
     {
         //
-        $departments = Department::orderBy('name')->paginate(10);
         return Inertia::render('Departments/Index', [
-            'departments' => $departments
+            'departments' => Department::orderBy('name')->paginate(10)
+                ->through(function($department) {
+                    return [
+                        'id' => $department->id,
+                        'name' => $department->name,
+                        'phone' => $department->phone,
+                        'email' => $department->email,
+                        'can' => [
+                            'delete' => auth()->user()->can('delete', $department),
+                            'edit' => auth()->user()->can('update', $department),
+                        ],
+                    ];
+                }),
+            'can' => [
+                'create' => auth()->user()->can('create', Department::class)
+            ]
         ]);
 
     }

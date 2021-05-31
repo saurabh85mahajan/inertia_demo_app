@@ -5,7 +5,9 @@
     </template>
 
     <div class="flex items-center justify-end mb-6">
-      <breeze-link :href="route('departments.create')"
+      <breeze-link
+        :href="route('departments.create')"
+        v-if="$page.props.can.create"
         >Create Department
       </breeze-link>
     </div>
@@ -23,10 +25,15 @@
         <breeze-tc>{{ d.email }}</breeze-tc>
         <breeze-tc>{{ d.phone }}</breeze-tc>
         <breeze-tc>
-          <breeze-link mode="edit" :href="route('departments.edit', d.id)"
+          <breeze-link
+            mode="edit"
+            :href="route('departments.edit', d.id)"
+            v-if="d.can.edit"
             >Edit</breeze-link
           >
-          <breeze-link mode="delete" @click="destroy(d.id)">Delete</breeze-link>
+          <breeze-link mode="delete" @click="destroy(d.id)" v-if="d.can.delete"
+            >Delete</breeze-link
+          >
           <breeze-link mode="view" @click="employees(d.id)">View</breeze-link>
         </breeze-tc>
       </tr>
@@ -59,15 +66,18 @@ export default {
   },
   methods: {
     destroy(id) {
-      this.$inertia.delete(route("departments.destroy", id), {preserveScroll: true, preserveState: false});
+      this.$inertia.delete(route("departments.destroy", id), {
+        preserveScroll: true,
+        preserveState: false,
+      });
     },
     employees(id) {
-      this.$inertia.visit(route('employees.index'), {
+      this.$inertia.visit(route("employees.index"), {
         method: "get",
-        data: {department_id: id}
+        data: { department_id: id },
       });
       // this.$inertia.get(route('employees.index'), {department_id: id});
-    }
+    },
   },
 };
 </script>

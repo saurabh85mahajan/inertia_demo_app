@@ -13,7 +13,7 @@
         @change="getEmployees(department_id)"
       ></breeze-select>
 
-      <breeze-link :href="route('employees.create')">New Employee </breeze-link>
+      <breeze-link :href="route('employees.create')" v-if="$page.props.can.create">New Employee </breeze-link>
     </div>
     <breeze-table>
       <template #header>
@@ -29,10 +29,10 @@
         <breeze-tc>{{ e.department }}</breeze-tc>
         <breeze-tc>{{ e.email }}</breeze-tc>
         <breeze-tc>
-          <breeze-link mode="edit" :href="route('employees.edit', e.id)"
+          <breeze-link mode="edit" :href="route('employees.edit', e.id)" v-if="e.can.edit"
             >Edit</breeze-link
           >
-          <breeze-link mode="delete" @click="destroy(e.id)">Delete</breeze-link>
+          <breeze-link mode="delete" @click="destroy(e.id)" v-if="e.can.delete">Delete</breeze-link>
         </breeze-tc>
       </tr>
     </breeze-table>
