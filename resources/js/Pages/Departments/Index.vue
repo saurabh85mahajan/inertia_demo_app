@@ -13,9 +13,30 @@
     </div>
     <breeze-table>
       <template #header>
-        <breeze-tc>ID</breeze-tc>
-        <breeze-tc>Name</breeze-tc>
-        <breeze-tc>Email</breeze-tc>
+        <breeze-tc
+          @click="sortColumn('id')"
+          :sortHeader="true"
+          field="id"
+          :sortby="sortby"
+          :sort="sort"
+          >ID</breeze-tc
+        >
+        <breeze-tc
+          @click="sortColumn('name')"
+          :sortHeader="true"
+          field="name"
+          :sortby="sortby"
+          :sort="sort"
+          >Name</breeze-tc
+        >
+        <breeze-tc
+          @click="sortColumn('email')"
+          :sortHeader="true"
+          field="email"
+          :sortby="sortby"
+          :sort="sort"
+          >Email</breeze-tc
+        >
         <breeze-tc>Phone</breeze-tc>
         <breeze-tc>Actions</breeze-tc>
       </template>
@@ -63,6 +84,8 @@ export default {
 
   props: {
     departments: Object,
+    sortby: String,
+    sort: String,
   },
   methods: {
     destroy(id) {
@@ -77,6 +100,22 @@ export default {
         data: { department_id: id },
       });
       // this.$inertia.get(route('employees.index'), {department_id: id});
+    },
+    sortColumn(col) {
+      var sort = this.sort;
+      if (col == this.sortby) {
+        if (this.sort == "asc") {
+          sort = "desc";
+        } else {
+          sort = "asc";
+        }
+      }
+
+      this.$inertia.get(route("departments.index"), {
+        sortby: col,
+        sort: sort,
+        page: this.departments.current_page,
+      });
     },
   },
 };

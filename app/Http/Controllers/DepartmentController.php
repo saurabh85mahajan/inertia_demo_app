@@ -6,6 +6,7 @@ use App\Models\Department;
 use Illuminate\Support\Facades\Redirect;
 //use Illuminate\Support\Facades\Request;
 use App\Http\Requests\DepartmentRequest;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
 class DepartmentController extends Controller
@@ -23,8 +24,17 @@ class DepartmentController extends Controller
     public function index()
     {
         //
+        $sortby = Request::get('sortby', 'id');
+        if(!in_array($sortby, ['id', 'name', 'email'])) {
+            $sortby = 'id';
+        }
+        $sort = Request::get('sort', 'asc');
+        if(!in_array($sort, ['asc', 'desc'])) {
+            $sort = 'asc';
+        }
+
         return Inertia::render('Departments/Index', [
-            'departments' => Department::orderBy('name')->paginate(10)
+            'departments' => Department::orderBy($sortby, ($sort == 'asc') ? 'ASC' : 'DESC')->paginate(10)
                 ->through(function($department) {
                     return [
                         'id' => $department->id,
@@ -37,6 +47,8 @@ class DepartmentController extends Controller
                         ],
                     ];
                 }),
+                'sortby' => $sortby,
+                'sort' => $sort,
             'can' => [
                 'create' => auth()->user()->can('create', Department::class)
             ]
