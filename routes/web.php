@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,6 +35,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
 
     Route::resource('departments', DepartmentController::class);
     Route::resource('employees', EmployeeController::class);
+    Route::get('edit-profile', [UserController::class, 'edit'])->name('edit-profile');
+    Route::put('update-profile', [UserController::class, 'update'])->name('update-profile');
 });
 
 require __DIR__.'/auth.php';
