@@ -96,7 +96,9 @@ export default {
   },
   methods: {
     submit() {
-      this.form.put(route("employees.update", this.employee.id));
+      this.form.put(route("employees.update", this.employee.id), {
+        preserveScroll : (page) => Object.keys(page.props.errors).length
+      });
     },
     resetForm() {
       this.form.clearErrors();

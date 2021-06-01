@@ -10,6 +10,9 @@
       </div>
     </div>
     <form @submit.prevent="submit">
+      <div class="mt-36 p-36">
+        Some dummy div.
+      </div>
       <div>
         <breeze-label for="name" value="Name"></breeze-label>
         <breeze-input
@@ -95,7 +98,9 @@ export default {
   },
   methods: {
     submit() {
-      this.form.post(route("employees.store"));
+      this.form.post(route("employees.store"), {
+        preserveScroll : (page) => Object.keys(page.props.errors).length
+      });
     },
     resetForm() {
       this.form.clearErrors();
