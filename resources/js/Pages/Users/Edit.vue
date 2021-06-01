@@ -42,6 +42,45 @@
         ></breeze-input>
         <breeze-input-error :message="form.errors.email"></breeze-input-error>
       </div>
+
+      <div>
+        <breeze-label for="image" value="Image"></breeze-label>
+        <input
+          type="file"
+          class="hidden"
+          ref="photo"
+          @change="updatePhotoPreview"
+        />
+
+        <div class="mt-2" v-show="!photoPreview && user.image">
+          <img
+            :src="currentImage()"
+            class="rounded-full h-20 w-20 object-cover"
+          />
+        </div>
+
+        <div class="mt-2" v-show="photoPreview">
+          <span
+            class="block rounded-full w-20 h-20"
+            :style="
+              'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
+              photoPreview +
+              '\');'
+            "
+          >
+          </span>
+        </div>
+
+        <breeze-input-error :message="form.errors.image"></breeze-input-error>
+
+        <breeze-button
+          class="mt-2 mr-2"
+          type="button"
+          @click.prevent="selectNewPhoto"
+          >Select a New Photo</breeze-button
+        >
+      </div>
+
       <!-- submit -->
       <div class="flex items-center justify-end mt-4">
         <breeze-reset-button @click="resetForm">Reset</breeze-reset-button>
@@ -77,8 +116,10 @@ export default {
   },
   setup(props) {
     const form = useForm({
+      _method: "PUT",
       name: props.user.name,
       email: props.user.email,
+      image: props.user.image,
     });
 
     return { form };
@@ -86,15 +127,36 @@ export default {
   props: {
     user: Object,
   },
+  data() {
+    return {
+      photoPreview: null,
+    };
+  },
   methods: {
     submit() {
-      this.form.put(route("update-profile", this.user.id), {
-        preserveScroll : (page) => Object.keys(page.props.errors).length
+      if (this.$refs.photo) {
+        this.form.image = this.$refs.photo.files[0];
+      }
+      this.form.post(route("update-profile"), {
+        preserveScroll: (page) => Object.keys(page.props.errors).length,
       });
     },
     resetForm() {
       this.form.clearErrors();
       this.form.reset();
+    },
+    currentImage() {
+      return "/storage/" + this.user.image;
+    },
+    selectNewPhoto() {
+      this.$refs.photo.click();
+    },
+    updatePhotoPreview() {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.photoPreview = e.target.result;
+      };
+      reader.readAsDataURL(this.$refs.photo.files[0]);
     },
   },
 };
