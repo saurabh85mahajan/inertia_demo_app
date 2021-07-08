@@ -47,6 +47,11 @@
         <breeze-tc>{{ d.phone }}</breeze-tc>
         <breeze-tc>
           <breeze-link
+            :href="route('departments.create')"
+            v-if="$page.props.can.create"
+            >Add
+          </breeze-link>
+          <breeze-link
             mode="edit"
             :href="route('departments.edit', d.id)"
             v-if="d.can.edit"

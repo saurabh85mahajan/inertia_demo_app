@@ -57,7 +57,7 @@ class DepartmentPolicy
     public function update(User $user, Department $department)
     {
         //
-        return false;
+        return true;
     }
 
     /**
@@ -70,7 +70,7 @@ class DepartmentPolicy
     public function delete(User $user, Department $department)
     {
         //
-        return false;
+        return true;
     }
 
     /**

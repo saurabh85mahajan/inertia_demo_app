@@ -10,9 +10,6 @@
       </div>
     </div>
     <form @submit.prevent="submit">
-      <div class="mt-36 p-36">
-        Some dummy div.
-      </div>
       <div>
         <breeze-label for="name" value="Name"></breeze-label>
         <breeze-input
