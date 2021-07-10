@@ -70,7 +70,7 @@ export default {
       this.$inertia.get(
         route("employees.index"),
         { department_id: department_id },
-        { only: ["employees", "department_id"] }
+        { only: ["employees", "department_id", "flash"] }
       );
     },
   },
