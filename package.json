@@ -28,6 +28,7 @@
     "dependencies": {
         "@inertiajs/inertia": "^0.9.0",
         "@inertiajs/inertia-vue3": "^0.4.0",
-        "@inertiajs/progress": "^0.2.5"
+        "@inertiajs/progress": "^0.2.5",
+        "chart.js": "^3.4.1"
     }
 }
